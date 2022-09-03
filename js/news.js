@@ -3,10 +3,11 @@ const loadCategory=async()=>{
     const res=await fetch(url);
     const data =await res.json();
     displayCategory(data.data.news_category);
+    
 }
 const displayCategory=(category)=>{
+  
     const newaCategory=document.getElementById('news-category');
-
    console.log(category);
    category.forEach(category => {
     const categoryDiv=document.createElement('div');
@@ -33,10 +34,12 @@ const displayCategory=(category)=>{
   
 
 const loadNews=async(category_id)=>{
+  toggleSpinner(true);
     const url=`https://openapi.programming-hero.com/api/news/category/${category_id}`;
     const res=await fetch(url);
     const data =await res.json();
     displayNews(data.data);
+
 } 
 
 const displayNews=shownews=>{
@@ -44,7 +47,7 @@ const displayNews=shownews=>{
     const newsSection=document.getElementById('news-section');
     newsSection.innerHTML='';
 
-   console.log(shownews);
+    // console.log(shownews);
    for(const News of shownews){
     const newsDiv=document.createElement('div');
     // newsDiv.classList.add('col');
@@ -62,9 +65,10 @@ const displayNews=shownews=>{
         </div>
         <button onclick="loadDetail('${News.category_id}')" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#DetailModal">Load details</button>
     `;
-    newsSection.appendChild(newsDiv);
-    
+    newsSection.appendChild(newsDiv);  
+ 
   }
+
   toggleSpinner(false);
    }
 
