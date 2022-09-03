@@ -92,7 +92,9 @@ const displayDetails=(totalData)=>{
         <h5 class="card-title">${fulldetail.title}</h5>
          <p>${fulldetail.details}</p>
         <p>rating: ${fulldetail.rating.number?fulldetail.rating.number:'not found'}<p>
+        <img class="author-img rounded me-2" src="${fulldetail.author.img?fulldetail.author.img:'no image'}">
         <p>author:${fulldetail.author.name?fulldetail.author.name:'no author'}
+        <i class="fa-regular fa-eye ms-4 mt-2"> ${fulldetail.total_view?fulldetail.total_view:"no view"}</i>
        `
      }
 
