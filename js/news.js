@@ -48,14 +48,10 @@ const displayNews=shownews=>{
     const newsSection=document.getElementById('news-section');
     newsSection.innerHTML='';
    
-    const notFound=document.getElementById('not-found');
-    if(shownews==0){
-      notFound.classList.remove('d-none');
-    }
-    else{
-      notFound.classList.add('d-none');
-    }
-    // console.log(shownews);
+    const foundItems=document.getElementById('found-items'); 
+    foundItems.innerHTML=`${shownews.length} items found`;
+      
+     console.log(shownews);
    for(const News of shownews){
     const newsDiv=document.createElement('div');
     // newsDiv.classList.add('col');
