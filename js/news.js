@@ -6,6 +6,7 @@ const loadCategory=async()=>{
 }
 const displayCategory=(category)=>{
     const newaCategory=document.getElementById('news-category');
+    
    console.log(category);
    category.forEach(category => {
     const categoryDiv=document.createElement('div');
@@ -27,8 +28,9 @@ const displayCategory=(category)=>{
   </nav>  
     `
     newaCategory.appendChild(categoryDiv);
-   });
-}
+   });  
+  }
+  
 
 const loadNews=async(category_id)=>{
     const url=`https://openapi.programming-hero.com/api/news/category/${category_id}`;
@@ -36,7 +38,9 @@ const loadNews=async(category_id)=>{
     const data =await res.json();
     displayNews(data.data);
 } 
+
 const displayNews=shownews=>{
+  
     const newsSection=document.getElementById('news-section');
     newsSection.innerHTML='';
    console.log(shownews);
@@ -49,6 +53,7 @@ const displayNews=shownews=>{
       <img src="${News.thumbnail_url}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">${News.title}</h5>
+        <p class="overflow">${News.details}</p>
         <div class="d-flex">
         <img class="author-img rounded me-2" src="${News.author.img}">
         <p class="card-text">${News.author.name}</p>
@@ -56,8 +61,11 @@ const displayNews=shownews=>{
         <button onclick="loadDetail()" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#DetailModal">Load details</button>
     `;
     newsSection.appendChild(newsDiv);
+    
+  }
+  toggleSpinner(false);
    }
-}
+
 
 const loadDetail=async()=>{
     const url=`https://openapi.programming-hero.com/api/news/category/01`
@@ -77,6 +85,16 @@ const displayDetails=(totalData)=>{
         `
     }
 
+}
+
+const toggleSpinner=isLoading=>{
+  const loaderSection=document.getElementById('loader');
+  if(isLoading){
+      loaderSection.classList.remove('d-none');
+  }
+  else{
+      loaderSection.classList.add('d-none');
+  }
 }
 
  loadNews() ;
