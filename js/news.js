@@ -9,6 +9,7 @@ const displayCategory=(category)=>{
   
     const newaCategory=document.getElementById('news-category');
    console.log(category);
+
    category.forEach(category => {
     const categoryDiv=document.createElement('div');
     categoryDiv.innerHTML=`
@@ -46,7 +47,14 @@ const displayNews=shownews=>{
   
     const newsSection=document.getElementById('news-section');
     newsSection.innerHTML='';
-
+   
+    const notFound=document.getElementById('not-found');
+    if(shownews==0){
+      notFound.classList.remove('d-none');
+    }
+    else{
+      notFound.classList.add('d-none');
+    }
     // console.log(shownews);
    for(const News of shownews){
     const newsDiv=document.createElement('div');
