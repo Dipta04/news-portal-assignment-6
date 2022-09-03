@@ -69,7 +69,7 @@ const displayNews=shownews=>{
         <div class="d-flex">
         <img class="author-img rounded me-2" src="${News.author.img?News.author.img:'no image'}">
         <p class="card-text">${News.author.name?News.author.name:"no author"}</p>
-        <i class="fa-regular fa-eye ms-4 mt-2"> ${News.total_view}</i>
+        <i class="fa-regular fa-eye ms-4 mt-2"> ${News.total_view?News.total_view:"no view"}</i>
         </div>
         <button onclick="loadDetail('${News.category_id}')" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#DetailModal">Load details</button>
     `;
@@ -82,7 +82,7 @@ const displayNews=shownews=>{
 
 
 const loadDetail=async(category_id)=>{
-    const url=`https://openapi.programming-hero.com/api/news/category/${category_id}`
+    const url=`https://openapi.programming-hero.com/api/news/category/${category_id}`;
     const res=await fetch(url);
     const data =await res.json();
     displayDetails(data.data);
@@ -90,14 +90,15 @@ const loadDetail=async(category_id)=>{
 const displayDetails=(totalData)=>{
     console.log(totalData);
     const details=document.getElementById('details');
-    for(const fulldetail of totalData)
-    {
+     for(const fulldetail of totalData)
+     {
         details.innerHTML=`
         <h5 class="card-title">${fulldetail.title}</h5>
-        <p>${fulldetail.details}</p>
+         <p>${fulldetail.details}</p>
         <p>rating: ${fulldetail.rating.number?fulldetail.rating.number:'not found'}<p>
-        `
-    }
+        <p>author:${fulldetail.author.name?fulldetail.author.name:'no author'}
+       `
+     }
 
 }
 
